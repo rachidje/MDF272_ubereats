@@ -50,4 +50,4 @@ Content-Type: application/json
 
 ### Display profile
 GET http://localhost:8000/v1/restaurant/profile
-Authorization: {{token}}
+Authorization: Bearer {{token}}

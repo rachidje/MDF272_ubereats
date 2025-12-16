@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { LoginDtoInputs } from "../../dtos";
 import { prisma } from "../../orm/client";
-import { generateSignature, isValidPassword } from "../../utils";
+import { generateSignature, isValidPassword, sanitizeRestaurant } from "../../utils";
 
 export const login = async (
     req: Request,
@@ -27,6 +27,22 @@ export const login = async (
         })
 
         return res.jsonSuccess({ token });
+    } catch (error) {
+        next(error);
+    }
+};
+
+export const getProfile = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) : Promise<any> => {
+    try {
+        const restaurant = await prisma.restaurant.findUnique({
+            where: { id: req.user?.id }
+        })
+        if(!restaurant) return res.jsonError("Restaurant not found", 404);
+        return res.jsonSuccess(sanitizeRestaurant(restaurant));
     } catch (error) {
         next(error);
     }

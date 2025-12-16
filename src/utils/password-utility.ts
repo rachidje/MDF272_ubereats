@@ -19,3 +19,11 @@ export const generateSignature = (payload: RestaurantPayload) => {
     const JWT_SECRET = getEnvVariable("JWT_SECRET");
     return jwt.sign(payload, JWT_SECRET, {expiresIn: '1d'});
 }
+
+export const extractToken = (authorization: string) => {
+    const [prefix, token] = authorization.split(' ');
+    const prefixes = ['Bearer', 'Basic', 'JWT'];
+
+    if(!prefixes.includes(prefix)) return null;
+    return token;
+}
