@@ -1,0 +1,53 @@
+@id=74ee3af6-e613-4bdc-8e62-bd4a1ab2caad
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjlhNmE3MzlhLTZiNGMtNDFlYS1iNWIyLTRkMWQyNTljNTEwZSIsIm5hbWUiOiJMZSBQZXRpdCBCaXN0cm8iLCJvd25lck5hbWUiOiJJc2FiZWxsZSBEdXBvbnQiLCJlbWFpbCI6ImxlcGV0aXRiaXN0cm9AZ21haWwuY29tIiwiZm9vZFR5cGVzIjpbIkZyZW5jaCIsIlNlYWZvb2QiXSwiaWF0IjoxNzY1ODg0MjI3LCJleHAiOjE3NjU5NzA2Mjd9.pxKsJuD5TttK0zJMgMqwB8Dmyav88v87lgG1lX5hf8o
+
+### Test
+GET http://localhost:8000?id=1234&name=Toto
+
+### Test post
+POST http://localhost:8000
+Content-Type: application/json
+
+{
+    "firstname": "John",
+    "lastname": "Doe"
+}
+
+### Test put
+PUT http://localhost:8000/1234
+
+
+### Admin create restaurant
+POST http://localhost:8000/v1/admin/restaurant/create
+Content-Type: application/json
+
+{
+    "name": "La Boucherie",
+    "ownerName": "Jean-Pierre",
+    "foodTypes": ["Pizza", "Burger", "French"],
+    "postalcode": "75001",
+    "address": "Rue de la Paix",
+    "phone": "0612345678",
+    "email": "jean-pierre@gmail.com",
+    "password": "123456"
+}
+
+### GET Restaurants list
+GET http://localhost:8000/v1/admin/restaurant
+
+### GET Restaurant by id
+GET http://localhost:8000/v1/admin/restaurant/{{id}}
+
+
+### Login
+POST http://localhost:8000/v1/restaurant/login
+Content-Type: application/json
+
+{
+    "email": "lepetitbistro@gmail.com",
+    "password": "qwerty"
+}
+
+### Display profile
+GET http://localhost:8000/v1/restaurant/profile
+Authorization: {{token}}
