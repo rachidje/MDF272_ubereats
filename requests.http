@@ -1,5 +1,5 @@
 @id=74ee3af6-e613-4bdc-8e62-bd4a1ab2caad
-@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjlhNmE3MzlhLTZiNGMtNDFlYS1iNWIyLTRkMWQyNTljNTEwZSIsIm5hbWUiOiJMZSBQZXRpdCBCaXN0cm8iLCJvd25lck5hbWUiOiJJc2FiZWxsZSBEdXBvbnQiLCJlbWFpbCI6ImxlcGV0aXRiaXN0cm9AZ21haWwuY29tIiwiZm9vZFR5cGVzIjpbIkZyZW5jaCIsIlNlYWZvb2QiXSwiaWF0IjoxNzY1ODg0MjI3LCJleHAiOjE3NjU5NzA2Mjd9.pxKsJuD5TttK0zJMgMqwB8Dmyav88v87lgG1lX5hf8o
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjlhNmE3MzlhLTZiNGMtNDFlYS1iNWIyLTRkMWQyNTljNTEwZSIsIm5hbWUiOiJMZSBQZXRpdCBCaXN0cm8iLCJvd25lck5hbWUiOiJJc2FiZWxsZSBEdXBvbnQiLCJlbWFpbCI6ImxlcGV0aXRiaXN0cm9AZ21haWwuY29tIiwiZm9vZFR5cGVzIjpbIkZyZW5jaCIsIlNlYWZvb2QiLCJJdGFsaWFuIl0sImlhdCI6MTc2NjA0OTA4NywiZXhwIjoxNzY2MTM1NDg3fQ.9lH6yDAb_usXbvbOgGDEWFt8onEbmIlNzNEJmOFRDeg
 
 ### Test
 GET http://localhost:8000?id=1234&name=Toto
@@ -51,3 +51,35 @@ Content-Type: application/json
 ### Display profile
 GET http://localhost:8000/v1/restaurant/profile
 Authorization: Bearer {{token}}
+
+### Edit profile
+PUT http://localhost:8000/v1/restaurant/profile
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "foodTypes": ["French", "Seafood", "Italian"],
+    "phone": "05 05 05 05 05"
+}
+
+### Update service available
+PATCH http://localhost:8000/v1/restaurant/available
+Authorization: Bearer {{token}}
+
+### Update Cover Images
+PATCH http://localhost:8000/v1/restaurant/profile/cover-images
+Authorization: Bearer {{token}}
+Content-Type: multipart/form-data; boundary=limite
+
+--limite
+Content-Disposition: form-data; name="images"; filename="restaurant-1.jpg"
+Content-Type: image/jpeg
+
+< ./tests/restaurant-1.jpg >
+
+--limite
+Content-Disposition: form-data; name="images"; filename="restaurant-2.jpg"
+Content-Type: image/jpeg
+
+< ./tests/restaurant-2.jpg >
+--limite--

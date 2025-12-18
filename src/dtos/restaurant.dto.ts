@@ -9,6 +9,14 @@ export interface CreateRestaurantDtoInputs {
     password: string;
 }
 
+export interface EditRestaurantDtoInputs {
+    name?: string;
+    ownerName?: string;
+    foodTypes?: string[];
+    address?: string;
+    phone?: string
+}
+
 export interface LoginDtoInputs {
     email: string;
     password: string;
