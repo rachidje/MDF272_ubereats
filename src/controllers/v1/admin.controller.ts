@@ -17,7 +17,7 @@ export const registerRestaurant = async (
         })
 
         if(existingRestaurant) {
-            return res.jsonError(`Email: ${body.email} already exists`)
+            return res.jsonError(`Email: ${body.email} already exists`, 409)
         }
 
         const salt = await generateSalt();
