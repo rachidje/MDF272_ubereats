@@ -6,11 +6,13 @@
     <title>Document</title>
 </head>
 <body>
-    <form method="post" enctype="multipart/form-data">
-        <input type="file" name="image" id="">
-    </form>
-    <form method="post" enctype="multipart/form-data">
-        <input type="file" name="images" id="" multiple>
+    <form action="" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="data">
+        
+        <input type="file" name="images" multiple id="">
+
+        <label for="">Nom:</label>
+        <input type="text" name="name" id="">
     </form>
 </body>
 </html>

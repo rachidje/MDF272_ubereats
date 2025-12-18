@@ -83,3 +83,28 @@ Content-Type: image/jpeg
 
 < ./tests/restaurant-2.jpg >
 --limite--
+
+### Add food
+POST http://localhost:8000/v1/restaurant/foods
+Authorization: Bearer {{token}}
+Content-Type: multipart/form-data; boundary=limite
+
+--limite
+Content-Disposition: form-data; name="data"
+Content-Type: application/json
+
+{
+    "name": "Pates",
+    "description": "Des pates a la creme",
+    "category": "pates",
+    "foodType": "pates",
+    "readyTime": 15,
+    "price": 15.90
+}
+
+--limite
+Content-Disposition: form-data; name="images"; filename="pates.jpg"
+Content-Type: image/jpeg
+
+< ./tests/pates.jpg >
+--limite--
